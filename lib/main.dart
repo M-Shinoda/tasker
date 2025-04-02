@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text("Title"),
         ),
-        body: const HomePage(title: 'Flutter Demo Home Page'),
+        body: const HomePage(),
         floatingActionButton: CounterIncrementButton(),
       ),
     );
