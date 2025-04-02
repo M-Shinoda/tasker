@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tasker/views/components/counter_increment_button.dart';
+import 'package:tasker/views/components/bottom_navigation_bar.dart';
 
 import 'package:tasker/views/pages/home.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
           title: Text("Title"),
         ),
         body: const HomePage(),
+        bottomNavigationBar: bottomNavicationBar(),
         floatingActionButton: CounterIncrementButton(),
       ),
     );
