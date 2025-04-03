@@ -17,7 +17,8 @@ class TaskNotifier extends StateNotifier<List<Task>> {
     state = await dbHelper.getTasks();
     final doneTaskCount = state.where((task) => task.isDone).length;
     final taskCount = state.length;
-    final progressPercentage = doneTaskCount / taskCount * 100;
+    final progressPercentage =
+        taskCount != 0 ? doneTaskCount / taskCount * 100 : 0.0;
 
     final progressNotifier = ref.read(progressProvider.notifier);
     progressNotifier.set(progressPercentage);
