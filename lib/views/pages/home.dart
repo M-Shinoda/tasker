@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tasker/views/components/create_task_button.dart';
 import 'package:tasker/views/components/progress_bar.dart';
 import 'package:tasker/views/components/task_list.dart';
 
@@ -20,6 +21,7 @@ class HomePage extends HookConsumerWidget {
           Expanded(child: TodoList()),
         ],
       ),
+      floatingActionButton: CreateTaskButton(),
     );
   }
 }
