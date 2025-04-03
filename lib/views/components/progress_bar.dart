@@ -10,13 +10,13 @@ class DayTaskProgressBar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final progress = ref.watch(progressProvider);
-    final progressNotifier1 = useMemoized(
+    final progressNotifier = useMemoized(
       () => ValueNotifier(progress),
       const [],
     );
 
     useEffect(() {
-      progressNotifier1.value = progress;
+      progressNotifier.value = progress;
       return null;
     }, [progress]);
 
@@ -25,7 +25,7 @@ class DayTaskProgressBar extends HookConsumerWidget {
       backColor: Colors.grey.shade300,
       progressStrokeWidth: 12,
       backStrokeWidth: 12,
-      valueNotifier: progressNotifier1,
+      valueNotifier: progressNotifier,
       mergeMode: true,
       animationDuration: 3,
       onGetText: (double value) {
