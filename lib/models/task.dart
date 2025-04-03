@@ -21,28 +21,6 @@ class Task with _$Task {
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 
-  // @override
-  // // TODO: implement description
-  // String? get description => throw UnimplementedError();
-
-  // @override
-  // // TODO: implement id
-  // int? get id => throw UnimplementedError();
-
-  // @override
-  // // TODO: implement isDone
-  // bool get isDone => throw UnimplementedError();
-
-  // @override
-  // // TODO: implement title
-  // String get title => throw UnimplementedError();
-
-  // @override
-  // Map<String, dynamic> toJson() {
-  //   // TODO: implement toJson
-  //   throw UnimplementedError();
-  // }
-
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
