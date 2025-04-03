@@ -21,7 +21,6 @@ class TaskNotifier extends StateNotifier<List<Task>> {
 
     final progressNotifier = ref.read(progressProvider.notifier);
     progressNotifier.set(progressPercentage);
-    print(progressPercentage);
   }
 
   Future<void> addTask(Task task) async {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tasker/models/task.dart';
 import 'package:tasker/repositories/task_repositories.dart';
 
 class TodoList extends HookConsumerWidget {
