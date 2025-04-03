@@ -21,7 +21,8 @@ class DayTaskProgressBar extends HookConsumerWidget {
     }, [progress]);
 
     return SimpleCircularProgressBar(
-      progressColors: const [Colors.blueAccent],
+      size: 200,
+      progressColors: const [Colors.cyan, Colors.purple],
       backColor: Colors.grey.shade300,
       progressStrokeWidth: 12,
       backStrokeWidth: 12,
