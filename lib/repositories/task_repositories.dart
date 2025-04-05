@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tasker/models/task.dart';
-import 'package:tasker/viewModels/progress.dart';
 import 'database_helper.dart';
 
 final databaseProvider = Provider<DatabaseHelper>((ref) => DatabaseHelper());
@@ -15,13 +14,6 @@ class TaskNotifier extends StateNotifier<List<Task>> {
 
   Future<void> _loadTasks() async {
     state = await dbHelper.getTasks();
-    final doneTaskCount = state.where((task) => task.isDone).length;
-    final taskCount = state.length;
-    final progressPercentage =
-        taskCount != 0 ? doneTaskCount / taskCount * 100 : 0.0;
-
-    final progressNotifier = ref.read(progressProvider.notifier);
-    progressNotifier.set(progressPercentage);
   }
 
   Future<void> addTask(Task task) async {
