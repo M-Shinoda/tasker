@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Task {
 
- int? get id; String get title; String? get description;// ignore: invalid_annotation_target
+ String get id; String get title; String? get description;// ignore: invalid_annotation_target
 @JsonKey(fromJson: _isDoneFromJson, toJson: _isDoneToJson, defaultValue: false) bool get isDone;
 /// Create a copy of Task
 /// with the given fields replaced by the non-null parameter values.
@@ -50,7 +50,7 @@ abstract mixin class $TaskCopyWith<$Res>  {
   factory $TaskCopyWith(Task value, $Res Function(Task) _then) = _$TaskCopyWithImpl;
 @useResult
 $Res call({
- int? id, String title, String? description,@JsonKey(fromJson: _isDoneFromJson, toJson: _isDoneToJson, defaultValue: false) bool isDone
+ String id, String title, String? description,@JsonKey(fromJson: _isDoneFromJson, toJson: _isDoneToJson, defaultValue: false) bool isDone
 });
 
 
@@ -67,10 +67,10 @@ class _$TaskCopyWithImpl<$Res>
 
 /// Create a copy of Task
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? title = null,Object? description = freezed,Object? isDone = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? isDone = null,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,isDone: null == isDone ? _self.isDone : isDone // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -84,10 +84,10 @@ as bool,
 @JsonSerializable()
 
 class _Task implements Task {
-  const _Task({this.id, required this.title, this.description, @JsonKey(fromJson: _isDoneFromJson, toJson: _isDoneToJson, defaultValue: false) this.isDone = false});
+  const _Task({required this.id, required this.title, this.description, @JsonKey(fromJson: _isDoneFromJson, toJson: _isDoneToJson, defaultValue: false) this.isDone = false});
   factory _Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 
-@override final  int? id;
+@override final  String id;
 @override final  String title;
 @override final  String? description;
 // ignore: invalid_annotation_target
@@ -126,7 +126,7 @@ abstract mixin class _$TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
   factory _$TaskCopyWith(_Task value, $Res Function(_Task) _then) = __$TaskCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, String title, String? description,@JsonKey(fromJson: _isDoneFromJson, toJson: _isDoneToJson, defaultValue: false) bool isDone
+ String id, String title, String? description,@JsonKey(fromJson: _isDoneFromJson, toJson: _isDoneToJson, defaultValue: false) bool isDone
 });
 
 
@@ -143,10 +143,10 @@ class __$TaskCopyWithImpl<$Res>
 
 /// Create a copy of Task
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? title = null,Object? description = freezed,Object? isDone = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? isDone = null,}) {
   return _then(_Task(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,isDone: null == isDone ? _self.isDone : isDone // ignore: cast_nullable_to_non_nullable
 as bool,

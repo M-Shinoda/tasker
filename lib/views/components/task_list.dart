@@ -28,7 +28,7 @@ class TodoList extends HookConsumerWidget {
                 },
               ),
               onLongPress: () {
-                ref.read(taskListProvider.notifier).deleteTask(todo.id!);
+                ref.read(taskListProvider.notifier).deleteTask(todo.id);
               },
             );
           },
