@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tasker/views/components/create_task_button.dart';
 import 'package:tasker/views/components/progress_bar.dart';
+import 'package:tasker/views/components/reminder_list.dart';
 import 'package:tasker/views/components/task_list.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -19,6 +20,8 @@ class HomePage extends HookConsumerWidget {
         children: <Widget>[
           SizedBox(width: 220, height: 220, child: DayTaskProgressBar()),
           Expanded(child: TodoList()),
+          Divider(),
+          Expanded(child: ReminderListView()),
         ],
       ),
       floatingActionButton: CreateTaskButton(),
