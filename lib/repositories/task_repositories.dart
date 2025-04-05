@@ -26,13 +26,18 @@ class TaskNotifier extends StateNotifier<List<Task>> {
     _loadTasks();
   }
 
-  Future<void> deleteTask(int id) async {
+  Future<void> deleteTask(String id) async {
     await dbHelper.deleteTask(id);
     _loadTasks();
   }
 
   Future<void> clearAll() async {
     await dbHelper.clearTable("Tasks");
+    _loadTasks();
+  }
+
+  Future<void> dropTable() async {
+    await dbHelper.dropTable("Tasks");
     _loadTasks();
   }
 }

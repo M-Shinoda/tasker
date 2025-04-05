@@ -27,7 +27,7 @@ class DatabaseHelper {
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE Tasks(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id TEXT PRIMARY KEY,
         title TEXT NOT NULL,
         description TEXT,
         isDone INTEGER NOT NULL
@@ -56,7 +56,7 @@ class DatabaseHelper {
     );
   }
 
-  Future<int> deleteTask(int id) async {
+  Future<int> deleteTask(String id) async {
     Database db = await database;
     return await db.delete('tasks', where: 'id = ?', whereArgs: [id]);
   }
@@ -64,5 +64,10 @@ class DatabaseHelper {
   Future<void> clearTable(String tableName) async {
     final db = await database;
     await db.rawDelete('DELETE FROM $tableName');
+  }
+
+  Future<void> dropTable(String tableName) async {
+    final db = await database;
+    await db.execute('DROP TABLE $tableName');
   }
 }

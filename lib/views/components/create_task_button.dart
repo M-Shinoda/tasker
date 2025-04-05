@@ -40,9 +40,9 @@ class CreateTaskButton extends ConsumerWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).pop(Task(title: title, description: description));
+                    Navigator.of(context).pop(
+                      Task.newCreate(title: title, description: description),
+                    );
                   },
                   child: Text('Add'),
                 ),

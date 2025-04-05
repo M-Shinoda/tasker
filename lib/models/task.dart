@@ -1,12 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:tasker/models/task_chip.dart';
+import 'package:uuid/uuid.dart';
 
 part 'task.freezed.dart';
 part 'task.g.dart';
 
 @freezed
-class Task with _$Task {
+class Task with _$Task implements TaskChip {
   const factory Task({
-    int? id,
+    required String id,
     required String title,
     String? description,
     // ignore: invalid_annotation_target
@@ -20,6 +22,13 @@ class Task with _$Task {
   }) = _Task;
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
+
+  factory Task.newCreate({required String title, String? description}) {
+    final uuid = Uuid();
+    print(Task(id: uuid.v4(), title: title, description: description));
+    print(Task(id: "joge", title: title));
+    return Task(id: uuid.v4(), title: title, description: description);
+  }
 
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
