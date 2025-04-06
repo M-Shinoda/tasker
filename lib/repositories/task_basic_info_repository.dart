@@ -13,6 +13,20 @@ class TaskBasicInfoRepository {
     }).toList();
   }
 
+  Future<TaskBasicInfo?> fetchTaskByTaskId(String taskId) async {
+    final snapshot =
+        await _taskBasicInfosRef.where("taskId", isEqualTo: taskId).get();
+    print(snapshot.docs);
+    if (snapshot.docs.isEmpty) {
+      return null;
+    }
+    if (snapshot.docs.length > 1) {
+      throw Exception("Multiple tasks found with the same taskId");
+    }
+    final doc = snapshot.docs.first;
+    return TaskBasicInfo.fromJson(doc.data()).copyWith(id: doc.id);
+  }
+
   Future<void> addTask(TaskBasicInfo taskBasicInfo) async {
     await _taskBasicInfosRef.add(taskBasicInfo.toJson());
   }

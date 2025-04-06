@@ -13,7 +13,7 @@ _TaskBasicInfo _$TaskBasicInfoFromJson(Map<String, dynamic> json) =>
       createdAt: _datetimeFromFirestore(json['createdAt']),
       updatedAt: _datetimeFromFirestore(json['updatedAt']),
       targetDue: (json['targetDue'] as num).toInt(),
-      targetStartAt: _datetimeFromFirestore(json['targetStartAt']),
+      targetStartAt: _nullableDatetimeFromFirestore(json['targetStartAt']),
       concentrateDue: (json['concentrateDue'] as num).toInt(),
       distractDue: (json['distractDue'] as num).toInt(),
       taskSourceType: $enumDecode(

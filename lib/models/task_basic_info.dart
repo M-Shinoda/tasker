@@ -24,8 +24,11 @@ class TaskBasicInfo with _$TaskBasicInfo {
     @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore)
     required DateTime updatedAt,
     required int targetDue,
-    @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore)
-    required DateTime targetStartAt,
+    @JsonKey(
+      fromJson: _nullableDatetimeFromFirestore,
+      toJson: _datetimeToFirestore,
+    )
+    DateTime? targetStartAt,
     required int concentrateDue,
     required int distractDue,
     required TaskSourceType taskSourceType,
@@ -34,6 +37,25 @@ class TaskBasicInfo with _$TaskBasicInfo {
 
   factory TaskBasicInfo.fromJson(Map<String, dynamic> json) =>
       _$TaskBasicInfoFromJson(json);
+
+  factory TaskBasicInfo.newCreate({
+    required String taskId,
+    required int targetDue,
+    required int concentrateDue,
+    required int distractDue,
+    required TaskSourceType taskSourceType,
+  }) {
+    final createdAt = DateTime.now();
+    return TaskBasicInfo(
+      taskId: taskId,
+      createdAt: createdAt,
+      updatedAt: createdAt,
+      targetDue: targetDue,
+      concentrateDue: concentrateDue,
+      distractDue: distractDue,
+      taskSourceType: taskSourceType,
+    );
+  }
 
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
@@ -49,7 +71,19 @@ DateTime _datetimeFromFirestore(dynamic value) {
   }
 }
 
-Timestamp _datetimeToFirestore(dynamic value) {
+DateTime? _nullableDatetimeFromFirestore(dynamic value) {
+  if (value == null) return null;
+  if (value is Timestamp) {
+    return value.toDate();
+  } else if (value is DateTime) {
+    return value;
+  } else {
+    throw Exception("Invalid type");
+  }
+}
+
+Timestamp? _datetimeToFirestore(dynamic value) {
+  if (value == null) return null;
   if (value is DateTime) {
     return Timestamp.fromDate(value);
   } else if (value is Timestamp) {

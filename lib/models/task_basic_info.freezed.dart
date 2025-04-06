@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TaskBasicInfo {
 
- String? get id; String get taskId;@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime get createdAt;@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime get updatedAt; int get targetDue;@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime get targetStartAt; int get concentrateDue; int get distractDue; TaskSourceType get taskSourceType; bool get isDone;
+ String? get id; String get taskId;@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime get createdAt;@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime get updatedAt; int get targetDue;@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? get targetStartAt; int get concentrateDue; int get distractDue; TaskSourceType get taskSourceType; bool get isDone;
 /// Create a copy of TaskBasicInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $TaskBasicInfoCopyWith<$Res>  {
   factory $TaskBasicInfoCopyWith(TaskBasicInfo value, $Res Function(TaskBasicInfo) _then) = _$TaskBasicInfoCopyWithImpl;
 @useResult
 $Res call({
- String? id, String taskId,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime createdAt,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime updatedAt, int targetDue,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime targetStartAt, int concentrateDue, int distractDue, TaskSourceType taskSourceType, bool isDone
+ String? id, String taskId,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime createdAt,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime updatedAt, int targetDue,@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? targetStartAt, int concentrateDue, int distractDue, TaskSourceType taskSourceType, bool isDone
 });
 
 
@@ -66,15 +66,15 @@ class _$TaskBasicInfoCopyWithImpl<$Res>
 
 /// Create a copy of TaskBasicInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? taskId = null,Object? createdAt = null,Object? updatedAt = null,Object? targetDue = null,Object? targetStartAt = null,Object? concentrateDue = null,Object? distractDue = null,Object? taskSourceType = null,Object? isDone = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? taskId = null,Object? createdAt = null,Object? updatedAt = null,Object? targetDue = null,Object? targetStartAt = freezed,Object? concentrateDue = null,Object? distractDue = null,Object? taskSourceType = null,Object? isDone = null,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,taskId: null == taskId ? _self.taskId : taskId // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,targetDue: null == targetDue ? _self.targetDue : targetDue // ignore: cast_nullable_to_non_nullable
-as int,targetStartAt: null == targetStartAt ? _self.targetStartAt : targetStartAt // ignore: cast_nullable_to_non_nullable
-as DateTime,concentrateDue: null == concentrateDue ? _self.concentrateDue : concentrateDue // ignore: cast_nullable_to_non_nullable
+as int,targetStartAt: freezed == targetStartAt ? _self.targetStartAt : targetStartAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,concentrateDue: null == concentrateDue ? _self.concentrateDue : concentrateDue // ignore: cast_nullable_to_non_nullable
 as int,distractDue: null == distractDue ? _self.distractDue : distractDue // ignore: cast_nullable_to_non_nullable
 as int,taskSourceType: null == taskSourceType ? _self.taskSourceType : taskSourceType // ignore: cast_nullable_to_non_nullable
 as TaskSourceType,isDone: null == isDone ? _self.isDone : isDone // ignore: cast_nullable_to_non_nullable
@@ -89,7 +89,7 @@ as bool,
 @JsonSerializable()
 
 class _TaskBasicInfo implements TaskBasicInfo {
-  const _TaskBasicInfo({this.id, required this.taskId, @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) required this.createdAt, @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) required this.updatedAt, required this.targetDue, @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) required this.targetStartAt, required this.concentrateDue, required this.distractDue, required this.taskSourceType, this.isDone = false});
+  const _TaskBasicInfo({this.id, required this.taskId, @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) required this.createdAt, @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) required this.updatedAt, required this.targetDue, @JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) this.targetStartAt, required this.concentrateDue, required this.distractDue, required this.taskSourceType, this.isDone = false});
   factory _TaskBasicInfo.fromJson(Map<String, dynamic> json) => _$TaskBasicInfoFromJson(json);
 
 @override final  String? id;
@@ -97,7 +97,7 @@ class _TaskBasicInfo implements TaskBasicInfo {
 @override@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) final  DateTime createdAt;
 @override@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) final  DateTime updatedAt;
 @override final  int targetDue;
-@override@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) final  DateTime targetStartAt;
+@override@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) final  DateTime? targetStartAt;
 @override final  int concentrateDue;
 @override final  int distractDue;
 @override final  TaskSourceType taskSourceType;
@@ -136,7 +136,7 @@ abstract mixin class _$TaskBasicInfoCopyWith<$Res> implements $TaskBasicInfoCopy
   factory _$TaskBasicInfoCopyWith(_TaskBasicInfo value, $Res Function(_TaskBasicInfo) _then) = __$TaskBasicInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String taskId,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime createdAt,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime updatedAt, int targetDue,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime targetStartAt, int concentrateDue, int distractDue, TaskSourceType taskSourceType, bool isDone
+ String? id, String taskId,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime createdAt,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime updatedAt, int targetDue,@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? targetStartAt, int concentrateDue, int distractDue, TaskSourceType taskSourceType, bool isDone
 });
 
 
@@ -153,15 +153,15 @@ class __$TaskBasicInfoCopyWithImpl<$Res>
 
 /// Create a copy of TaskBasicInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? taskId = null,Object? createdAt = null,Object? updatedAt = null,Object? targetDue = null,Object? targetStartAt = null,Object? concentrateDue = null,Object? distractDue = null,Object? taskSourceType = null,Object? isDone = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? taskId = null,Object? createdAt = null,Object? updatedAt = null,Object? targetDue = null,Object? targetStartAt = freezed,Object? concentrateDue = null,Object? distractDue = null,Object? taskSourceType = null,Object? isDone = null,}) {
   return _then(_TaskBasicInfo(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,taskId: null == taskId ? _self.taskId : taskId // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,targetDue: null == targetDue ? _self.targetDue : targetDue // ignore: cast_nullable_to_non_nullable
-as int,targetStartAt: null == targetStartAt ? _self.targetStartAt : targetStartAt // ignore: cast_nullable_to_non_nullable
-as DateTime,concentrateDue: null == concentrateDue ? _self.concentrateDue : concentrateDue // ignore: cast_nullable_to_non_nullable
+as int,targetStartAt: freezed == targetStartAt ? _self.targetStartAt : targetStartAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,concentrateDue: null == concentrateDue ? _self.concentrateDue : concentrateDue // ignore: cast_nullable_to_non_nullable
 as int,distractDue: null == distractDue ? _self.distractDue : distractDue // ignore: cast_nullable_to_non_nullable
 as int,taskSourceType: null == taskSourceType ? _self.taskSourceType : taskSourceType // ignore: cast_nullable_to_non_nullable
 as TaskSourceType,isDone: null == isDone ? _self.isDone : isDone // ignore: cast_nullable_to_non_nullable
