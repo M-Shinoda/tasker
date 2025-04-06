@@ -1,10 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tasker/firebase_options.dart';
 import 'package:tasker/views/components/bottom_navigation_bar.dart';
 
 import 'package:tasker/views/pages/home.dart';
 
-void main() {
+void main() async {
+  var now = DateTime.now().toUtc().add(Duration(hours: 9)); // UTCからJSTへ
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MyApp()));
 }
 
