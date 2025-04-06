@@ -45,12 +45,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBCkWXTcBEwwOPSFW9baFpFdvMH7mEnekg',
-    appId: '1:120143959860:web:705301afe495f0d9f07761',
+    appId: '1:120143959860:web:7fce83171fbf12ccf07761',
     messagingSenderId: '120143959860',
     projectId: 'tasker-1bf50',
     authDomain: 'tasker-1bf50.firebaseapp.com',
     storageBucket: 'tasker-1bf50.firebasestorage.app',
-    measurementId: 'G-BRZE52HRRR',
+    measurementId: 'G-QQ33673QPL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
