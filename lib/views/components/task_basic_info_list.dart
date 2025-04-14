@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tasker/viewModels/reminders.dart';
 import 'package:tasker/viewModels/task_basic_info_repository.dart';
+import 'package:tasker/views/pages/timer.dart';
 
 class TaskBasicInfoList extends HookConsumerWidget {
   const TaskBasicInfoList({super.key});
@@ -33,6 +34,14 @@ class TaskBasicInfoList extends HookConsumerWidget {
               final taskBasicInfo = taskBasicInfos[i];
               return ListTile(
                 title: Text(taskName(taskBasicInfo.taskId)),
+                onLongPress: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder:
+                          (context) => TimerPage(taskBasicInfo: taskBasicInfo),
+                    ),
+                  );
+                },
                 trailing: Checkbox(
                   value: taskBasicInfo.isDone,
                   onChanged: (_) {

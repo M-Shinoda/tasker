@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -17,10 +19,20 @@ class TaskWork with _$TaskWork {
   const factory TaskWork({
     String? id,
     required String taskId,
+    @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore)
     required DateTime createdAt,
+    @JsonKey(
+      fromJson: _nullableDatetimeFromFirestore,
+      toJson: _datetimeToFirestore,
+    )
     DateTime? startedAt,
+    @JsonKey(
+      fromJson: _nullableDatetimeFromFirestore,
+      toJson: _datetimeToFirestore,
+    )
     DateTime? endedAt,
     required TaskWorkType type,
+    @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore)
     required DateTime updatedAt,
     @Default(false) bool isDone,
   }) = _TaskWork;
@@ -28,22 +40,56 @@ class TaskWork with _$TaskWork {
   factory TaskWork.fromJson(Map<String, dynamic> json) =>
       _$TaskWorkFromJson(json);
 
-  factory TaskWork.fromFirestore(Map<String, dynamic> docData) {
+  factory TaskWork.newCreate({
+    required String taskId,
+    required DateTime createdAt,
+    required DateTime? startedAt,
+    required DateTime? endedAt,
+    required TaskWorkType type,
+  }) {
+    final createdAt = DateTime.now();
     return TaskWork(
-      id: docData['id'] as String?,
-      taskId: docData['taskId'] as String,
-      createdAt: (docData['createdAt'] as Timestamp).toDate(),
-      startedAt: (docData['startedAt'] as Timestamp?)?.toDate(),
-      endedAt: (docData['endedAt'] as Timestamp?)?.toDate(),
-      type: TaskWorkType.values.firstWhere(
-        (e) =>
-            e.name.toLowerCase() == (docData['type'] as String).toLowerCase(),
-        orElse: () => TaskWorkType.concentrate,
-      ),
-      updatedAt: (docData['updatedAt'] as Timestamp).toDate(),
-      isDone: docData['isDone'] as bool? ?? false,
+      taskId: taskId,
+      createdAt: createdAt,
+      startedAt: startedAt,
+      endedAt: endedAt,
+      type: type,
+      updatedAt: createdAt,
     );
   }
+
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+DateTime _datetimeFromFirestore(dynamic value) {
+  if (value is Timestamp) {
+    return value.toDate();
+  } else if (value is DateTime) {
+    return value;
+  } else {
+    throw Exception("Invalid type");
+  }
+}
+
+DateTime? _nullableDatetimeFromFirestore(dynamic value) {
+  if (value == null) return null;
+  if (value is Timestamp) {
+    return value.toDate();
+  } else if (value is DateTime) {
+    return value;
+  } else {
+    throw Exception("Invalid type");
+  }
+}
+
+Timestamp? _datetimeToFirestore(dynamic value) {
+  if (value == null) return null;
+  if (value is DateTime) {
+    return Timestamp.fromDate(value);
+  } else if (value is Timestamp) {
+    return value;
+  } else {
+    throw Exception("Invalid type");
+  }
 }

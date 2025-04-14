@@ -16,7 +16,6 @@ class TaskBasicInfoRepository {
   Future<TaskBasicInfo?> fetchTaskByTaskId(String taskId) async {
     final snapshot =
         await _taskBasicInfosRef.where("taskId", isEqualTo: taskId).get();
-    print(snapshot.docs);
     if (snapshot.docs.isEmpty) {
       return null;
     }

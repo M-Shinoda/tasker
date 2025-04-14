@@ -9,28 +9,22 @@ part of 'task_work.dart';
 _TaskWork _$TaskWorkFromJson(Map<String, dynamic> json) => _TaskWork(
   id: json['id'] as String?,
   taskId: json['taskId'] as String,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  startedAt:
-      json['startedAt'] == null
-          ? null
-          : DateTime.parse(json['startedAt'] as String),
-  endedAt:
-      json['endedAt'] == null
-          ? null
-          : DateTime.parse(json['endedAt'] as String),
+  createdAt: _datetimeFromFirestore(json['createdAt']),
+  startedAt: _nullableDatetimeFromFirestore(json['startedAt']),
+  endedAt: _nullableDatetimeFromFirestore(json['endedAt']),
   type: $enumDecode(_$TaskWorkTypeEnumMap, json['type']),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  updatedAt: _datetimeFromFirestore(json['updatedAt']),
   isDone: json['isDone'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$TaskWorkToJson(_TaskWork instance) => <String, dynamic>{
   'id': instance.id,
   'taskId': instance.taskId,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'startedAt': instance.startedAt?.toIso8601String(),
-  'endedAt': instance.endedAt?.toIso8601String(),
+  'createdAt': _datetimeToFirestore(instance.createdAt),
+  'startedAt': _datetimeToFirestore(instance.startedAt),
+  'endedAt': _datetimeToFirestore(instance.endedAt),
   'type': _$TaskWorkTypeEnumMap[instance.type]!,
-  'updatedAt': instance.updatedAt.toIso8601String(),
+  'updatedAt': _datetimeToFirestore(instance.updatedAt),
   'isDone': instance.isDone,
 };
 

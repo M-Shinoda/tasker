@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TaskWork {
 
- String? get id; String get taskId; DateTime get createdAt; DateTime? get startedAt; DateTime? get endedAt; TaskWorkType get type; DateTime get updatedAt; bool get isDone;
+ String? get id; String get taskId;@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime get createdAt;@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? get startedAt;@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? get endedAt; TaskWorkType get type;@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime get updatedAt; bool get isDone;
 /// Create a copy of TaskWork
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $TaskWorkCopyWith<$Res>  {
   factory $TaskWorkCopyWith(TaskWork value, $Res Function(TaskWork) _then) = _$TaskWorkCopyWithImpl;
 @useResult
 $Res call({
- String? id, String taskId, DateTime createdAt, DateTime? startedAt, DateTime? endedAt, TaskWorkType type, DateTime updatedAt, bool isDone
+ String? id, String taskId,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime createdAt,@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? startedAt,@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? endedAt, TaskWorkType type,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime updatedAt, bool isDone
 });
 
 
@@ -87,16 +87,16 @@ as bool,
 @JsonSerializable()
 
 class _TaskWork implements TaskWork {
-  const _TaskWork({this.id, required this.taskId, required this.createdAt, this.startedAt, this.endedAt, required this.type, required this.updatedAt, this.isDone = false});
+  const _TaskWork({this.id, required this.taskId, @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) required this.createdAt, @JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) this.startedAt, @JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) this.endedAt, required this.type, @JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) required this.updatedAt, this.isDone = false});
   factory _TaskWork.fromJson(Map<String, dynamic> json) => _$TaskWorkFromJson(json);
 
 @override final  String? id;
 @override final  String taskId;
-@override final  DateTime createdAt;
-@override final  DateTime? startedAt;
-@override final  DateTime? endedAt;
+@override@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) final  DateTime createdAt;
+@override@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) final  DateTime? startedAt;
+@override@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) final  DateTime? endedAt;
 @override final  TaskWorkType type;
-@override final  DateTime updatedAt;
+@override@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) final  DateTime updatedAt;
 @override@JsonKey() final  bool isDone;
 
 /// Create a copy of TaskWork
@@ -132,7 +132,7 @@ abstract mixin class _$TaskWorkCopyWith<$Res> implements $TaskWorkCopyWith<$Res>
   factory _$TaskWorkCopyWith(_TaskWork value, $Res Function(_TaskWork) _then) = __$TaskWorkCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String taskId, DateTime createdAt, DateTime? startedAt, DateTime? endedAt, TaskWorkType type, DateTime updatedAt, bool isDone
+ String? id, String taskId,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime createdAt,@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? startedAt,@JsonKey(fromJson: _nullableDatetimeFromFirestore, toJson: _datetimeToFirestore) DateTime? endedAt, TaskWorkType type,@JsonKey(fromJson: _datetimeFromFirestore, toJson: _datetimeToFirestore) DateTime updatedAt, bool isDone
 });
 
 
