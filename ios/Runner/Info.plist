@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSRemindersUsageDescription</key>
+	<string>リマインダーへのアクセスを許可してください。</string>
 </dict>
 </plist>
