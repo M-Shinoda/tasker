@@ -4,6 +4,7 @@ import 'package:tasker/views/components/create_task_button.dart';
 import 'package:tasker/views/components/progress_bar.dart';
 import 'package:tasker/views/components/reminder_list.dart';
 import 'package:tasker/views/components/task_list.dart';
+import 'package:tasker/views/components/task_basic_info_list.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -22,6 +23,8 @@ class HomePage extends HookConsumerWidget {
           Expanded(child: TodoList()),
           Divider(),
           Expanded(child: ReminderListView()),
+          Divider(),
+          Expanded(child: TaskBasicInfoList()),
         ],
       ),
       floatingActionButton: CreateTaskButton(),
