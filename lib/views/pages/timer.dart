@@ -1,12 +1,16 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:reminders/reminder.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
+import 'package:tasker/models/local_notification.dart';
 import 'package:tasker/models/task_basic_info.dart';
 import 'package:tasker/models/task_work.dart';
+import 'package:tasker/viewModels/local_notification.dart';
 import 'package:tasker/viewModels/reminders.dart';
 import 'package:tasker/viewModels/task_work_repository.dart';
 
@@ -103,19 +107,9 @@ class TimerPage extends HookConsumerWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          remindersAsync.when(
-            data: (reminders) {
-              final filterReminder = reminders.where((reminder) {
-                return reminder.id == taskBasicInfo.taskId;
-              });
-              return Text(
-                filterReminder.isEmpty
-                    ? taskBasicInfo.taskId
-                    : filterReminder.first.title,
-              );
-            },
-            error: (err, stack) => Text('Error: $err'),
-            loading: () => CircularProgressIndicator(),
+          Text(
+            (getThisReminder(remindersAsync, taskBasicInfo.taskId)?.title ??
+                taskBasicInfo.taskId),
           ),
           SizedBox(
             width: double.infinity,
@@ -162,6 +156,24 @@ class TimerPage extends HookConsumerWidget {
                               .addTaskWork(newTaskWork);
 
                           nowTaskWork.value = newTaskWork.copyWith(id: doc.id);
+                          final scheduledAt = createdAt.add(
+                            Duration(seconds: taskBasicInfo.concentrateDue),
+                          );
+                          final noti = LocalNotification(
+                            id: createdAt.millisecondsSinceEpoch ~/ 1000,
+                            title:
+                                getThisReminder(
+                                  remindersAsync,
+                                  taskBasicInfo.taskId,
+                                )?.title ??
+                                taskBasicInfo.taskId,
+                            body:
+                                "createdAt: $createdAt scheduledAt: $scheduledAt concentrateDue: ${taskBasicInfo.concentrateDue}",
+                            scheduledTime: scheduledAt,
+                          );
+                          await ref
+                              .read(notificationServiceProvider.notifier)
+                              .scheduleNotification(noti);
                         },
                 child: Text('Start Timer'),
               ),
@@ -171,6 +183,28 @@ class TimerPage extends HookConsumerWidget {
                         ? null
                         : () => endTaskWork(DateTime.now()),
                 child: Text('End Timer'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final scheduledAt = DateTime.now().add(
+                    Duration(milliseconds: 5000),
+                  );
+                  final noti = LocalNotification(
+                    id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+                    title:
+                        getThisReminder(
+                          remindersAsync,
+                          taskBasicInfo.taskId,
+                        )?.title ??
+                        taskBasicInfo.taskId,
+                    body: "test",
+                    scheduledTime: scheduledAt,
+                  );
+                  await ref
+                      .read(notificationServiceProvider.notifier)
+                      .scheduleNotification(noti);
+                },
+                child: Text('test Notification'),
               ),
             ],
           ),
@@ -226,4 +260,15 @@ List<LineChartBarData> createTimeRangeBars(List<Map<String, DateTime>> ranges) {
     );
   }
   return lineBars;
+}
+
+Reminder? getThisReminder(
+  AsyncValue<List<Reminder>> remindersAsync,
+  String taskId,
+) {
+  return remindersAsync.whenOrNull(
+    data: (reminders) {
+      return reminders.firstWhereOrNull((reminder) => reminder.id == taskId);
+    },
+  );
 }

@@ -47,5 +47,14 @@
 	<true/>
 	<key>NSRemindersUsageDescription</key>
 	<string>リマインダーへのアクセスを許可してください。</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>alert</string>
+
+	<key>UNUserNotificationCenterUsageDescription</key>
+	<string>通知を使用する理由の説明（例: リマインダー表示のため）</string>
 </dict>
 </plist>

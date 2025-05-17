@@ -7,7 +7,6 @@ import 'package:tasker/views/components/bottom_navigation_bar.dart';
 import 'package:tasker/views/pages/home.dart';
 
 void main() async {
-  var now = DateTime.now().toUtc().add(Duration(hours: 9)); // UTCからJSTへ
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MyApp()));
